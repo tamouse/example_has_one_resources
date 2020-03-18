@@ -1,0 +1,27 @@
+<%= form_with(model: logo, local: true) do |form| %>
+  <% if logo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(logo.errors.count, "error") %> prohibited this logo from being saved:</h2>
+
+      <ul>
+        <% logo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :belongs_to %>
+    <%= form.text_field :belongs_to %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
