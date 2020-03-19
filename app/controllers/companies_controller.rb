@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+## CompaniesController
+#
+# Handles actions for company resources
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
@@ -9,8 +14,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   # GET /companies/1.json
-  def show
-  end
+  def show; end
 
   # GET /companies/new
   def new
@@ -18,8 +22,7 @@ class CompaniesController < ApplicationController
   end
 
   # GET /companies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /companies
   # POST /companies.json
@@ -31,7 +34,7 @@ class CompaniesController < ApplicationController
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
-        format.html { render :new }
+        format.html { render :new, alert: 'Error creating company' }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +48,7 @@ class CompaniesController < ApplicationController
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
-        format.html { render :edit }
+        format.html { render :edit, alert: 'Error updating company' }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
@@ -62,13 +65,14 @@ class CompaniesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_company
-      @company = Company.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def company_params
-      params.require(:company).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_company
+    @company = Company.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def company_params
+    params.require(:company).permit(:name)
+  end
 end
